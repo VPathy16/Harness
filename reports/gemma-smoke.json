@@ -1,0 +1,11 @@
+{
+  "scope": "component load/inference checks, not a quality benchmark",
+  "results": [
+    {
+      "component": "gemma",
+      "status": "failed",
+      "returncode": -9,
+      "error": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\nLoading weights:   0%|          | 0/1951 [00:00<?, ?it/s]\nLoading weights:   7%|\u258b         | 128/1951 [00:00<00:01, 1169.26it/s]\nLoading weights:  15%|\u2588\u258c        | 296/1951 [00:00<00:01, 1450.58it/s]\nLoading weights:  29%|\u2588\u2588\u2589       | 566/1951 [00:00<00:00, 1971.38it/s]"
+    }
+  ]
+}

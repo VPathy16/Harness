@@ -1,0 +1,10 @@
+{
+  "repo_id": "mradermacher/gemma-4-E2B-GGUF",
+  "revision": "3762686d74ff8db6c98f8d3c389f56fbdf994d5a",
+  "filename": "gemma-4-E2B.Q4_K_M.gguf",
+  "bytes": 3427861984,
+  "sha256": "389c868898bffed97fd178646f88562cafecc6f60983a636bac53b131fd068a2",
+  "download_seconds": 81.31957945199974,
+  "quantization": "Q4_K_M",
+  "provenance": "Community conversion of Google Gemma 4 E2B, distinct from original full-precision checkpoint"
+}

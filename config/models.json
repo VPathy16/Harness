@@ -1,0 +1,34 @@
+{
+  "gemma": {
+    "repo_id": "google/gemma-4-E2B",
+    "revision": "d29ff6b45f081a49ee2733a859c9c9c2d95d1a6f",
+    "role": "proposal generation",
+    "license": "apache-2.0",
+    "allow_patterns": ["*.json", "*.safetensors", "*.model", "*.jinja", "README.md", "LICENSE*"],
+    "note": "2.3B effective; about 5.1B including embeddings. Full upstream checkpoint, not a 2 GB quantization."
+  },
+  "laya": {
+    "repo_id": "convaiinnovations/laya",
+    "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+    "role": "candidate ranking, experimental until domain evaluated",
+    "license": "apache-2.0",
+    "allow_patterns": ["config.json", "rl_agent_config.json", "model.safetensors", "encoder/*", "tokenizer/*", "README.md", "LICENSE*"],
+    "note": "English 421M checkpoint only. No claim of Jev parity; upstream reports weak zero-shot typed-decisions performance."
+  },
+  "embedding": {
+    "repo_id": "google/embeddinggemma-2",
+    "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+    "role": "retrieval",
+    "license": "apache-2.0",
+    "allow_patterns": ["*.json", "*.safetensors", "*.model", "*.jinja", "README.md", "LICENSE*"],
+    "note": "740M full checkpoint; text-only loading is 270M. Use float32 or bfloat16, not float16."
+  },
+  "timesfm": {
+    "repo_id": "google/timesfm-2.5-200m-pytorch",
+    "revision": "1d952420fba87f3c6dee4f240de0f1a0fbc790e3",
+    "role": "numeric time-series forecasting only",
+    "license": "apache-2.0",
+    "allow_patterns": ["*.json", "*.safetensors", "README.md", "LICENSE*"],
+    "note": "2.5 selected for small size and Apache weights. Not a generic action-conditioned world model."
+  }
+}

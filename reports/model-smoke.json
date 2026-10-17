@@ -1,0 +1,110 @@
+{
+  "scope": "real component inference; not a quality comparison",
+  "host_memory_limit_bytes": 8589934592,
+  "results": [
+    {
+      "component": "laya",
+      "status": "inference_completed",
+      "load_seconds": 9.221054539999841,
+      "inference_seconds": 1.5138421890001155,
+      "peak_rss_bytes": 3376406528,
+      "output": [
+        1,
+        0
+      ]
+    },
+    {
+      "component": "embedding",
+      "status": "inference_completed",
+      "load_seconds": 10.311993179999718,
+      "inference_seconds": 0.2706119879999278,
+      "peak_rss_bytes": 2455986176,
+      "output": [
+        {
+          "text": "SQL queries retrieve database records.",
+          "score": 0.8016238808631897
+        },
+        {
+          "text": "Rain falls from clouds.",
+          "score": 0.5838223695755005
+        }
+      ]
+    },
+    {
+      "component": "timesfm",
+      "status": "inference_completed",
+      "load_seconds": 4.124597376000111,
+      "inference_seconds": 2.146046653999747,
+      "peak_rss_bytes": 2386735104,
+      "output": {
+        "point": [
+          [
+            65.39967346191406,
+            65.80034637451172,
+            66.39164733886719,
+            68.16853332519531
+          ]
+        ],
+        "quantiles": [
+          [
+            [
+              64.52388000488281,
+              62.4008903503418,
+              62.4008903503418,
+              64.23766326904297,
+              65.39967346191406,
+              65.39967346191406,
+              65.39967346191406,
+              65.74691772460938,
+              68.42475891113281,
+              68.42475891113281
+            ],
+            [
+              67.40162658691406,
+              60.65937805175781,
+              62.77568817138672,
+              64.65217590332031,
+              64.65217590332031,
+              65.80034637451172,
+              66.73280334472656,
+              66.73280334472656,
+              68.94757080078125,
+              72.01647186279297
+            ],
+            [
+              67.569091796875,
+              58.66383361816406,
+              66.00212860107422,
+              66.00212860107422,
+              66.39164733886719,
+              66.39164733886719,
+              66.39164733886719,
+              66.43571472167969,
+              66.43571472167969,
+              72.9675521850586
+            ],
+            [
+              67.03517150878906,
+              61.18632507324219,
+              66.09437561035156,
+              66.33206939697266,
+              66.33206939697266,
+              68.16853332519531,
+              70.55735778808594,
+              70.55735778808594,
+              70.57049560546875,
+              74.37080383300781
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "component": "gemma",
+      "status": "failed",
+      "returncode": -9,
+      "error": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\nLoading weights:   0%|          | 0/1951 [00:00<?, ?it/s]\nLoading weights:   7%|\u258b         | 128/1951 [00:00<00:01, 1169.26it/s]\nLoading weights:  15%|\u2588\u258c        | 296/1951 [00:00<00:01, 1450.58it/s]\nLoading weights:  29%|\u2588\u2588\u2589       | 566/1951 [00:00<00:00, 1971.38it/s]"
+    }
+  ],
+  "gemma_failure_note": "Worker was killed during full-precision load; cgroup memory.events reported one OOM kill. Use a quantized external server or a larger-memory machine."
+}

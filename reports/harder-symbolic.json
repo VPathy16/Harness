@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "scope": "arithmetic smoke suite; not general intelligence evidence",
+  "task_spec_sha256": "a12455a981bea3e227b32c8244255e6a94a513eedb122d21f310e65975e72a18",
+  "configuration": {
+    "command": "bench",
+    "tasks": "examples/harder-arithmetic.json",
+    "mode": "symbolic",
+    "backend": null,
+    "base_url": null,
+    "model": null,
+    "seed": null,
+    "llama_no_thinking": false,
+    "models": "models",
+    "device": "cpu",
+    "ranker": "none",
+    "ranker_calls": 0,
+    "max_calls": 8,
+    "max_tokens": 256,
+    "seconds": 60.0,
+    "expansions": 200000,
+    "usd_per_hour": null,
+    "input_usd_per_million": null,
+    "output_usd_per_million": null,
+    "workspace": "workspace",
+    "output": "reports/harder-symbolic.json"
+  },
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "cold_load_seconds": 6.310001481324434e-07,
+  "total_wall_seconds": 4.860646060999898,
+  "successes": 3,
+  "tasks": 3,
+  "p50_seconds": 1.603923788999964,
+  "p95_seconds": 3.236485198999617,
+  "client_process_peak_rss_bytes": 68554752,
+  "remote_server_memory_bytes": null,
+  "estimated_execution_usd": null,
+  "estimated_cold_load_usd": null,
+  "training_cost_usd": null,
+  "rows": [
+    {
+      "task_id": "six-952",
+      "status": "verified",
+      "expression": "((50/25)-(100*(3-(75/6))))",
+      "seconds": 1.603923788999964,
+      "model_calls": 0,
+      "ranker_calls": 0,
+      "expanded": 41401,
+      "generated": 107754,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "verified",
+          "expression": "((50/25)-(100*(3-(75/6))))"
+        }
+      ]
+    },
+    {
+      "task_id": "six-997",
+      "status": "verified",
+      "expression": "(31+((19+23)*(43-(7+13))))",
+      "seconds": 0.011251685999923211,
+      "model_calls": 0,
+      "ranker_calls": 0,
+      "expanded": 305,
+      "generated": 1366,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "verified",
+          "expression": "(31+((19+23)*(43-(7+13))))"
+        }
+      ]
+    },
+    {
+      "task_id": "six-831",
+      "status": "verified",
+      "expression": "((17*(29-5))-(47*(2-11)))",
+      "seconds": 3.236485198999617,
+      "model_calls": 0,
+      "ranker_calls": 0,
+      "expanded": 77699,
+      "generated": 228715,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "verified",
+          "expression": "((17*(29-5))-(47*(2-11)))"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "No cost is assumed zero when a tariff is missing.",
+    "No exact-result cache is read during benchmarking.",
+    "Budgets are cooperative: an in-flight kernel may finish late; late answers count as failures.",
+    "Peak RSS is process memory, not GPU VRAM or remote server memory."
+  ]
+}

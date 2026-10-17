@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "scope": "arithmetic smoke suite; not general intelligence evidence",
+  "task_spec_sha256": "7ad20c7300a1752c54b2284712d4998cb23a5bfc53f1dd375c70575af896ed6d",
+  "configuration": {
+    "command": "bench",
+    "tasks": "examples/arithmetic.json",
+    "mode": "direct",
+    "backend": "http",
+    "base_url": "http://127.0.0.1:8087/v1",
+    "model": "gemma-e2b-q4",
+    "seed": 7,
+    "llama_no_thinking": true,
+    "models": "models",
+    "device": "cpu",
+    "ranker": "none",
+    "ranker_calls": 0,
+    "max_calls": 8,
+    "max_tokens": 96,
+    "seconds": 30.0,
+    "expansions": 10000,
+    "usd_per_hour": null,
+    "input_usd_per_million": null,
+    "output_usd_per_million": null,
+    "workspace": "workspace",
+    "output": "reports/run-gemma-direct.json"
+  },
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "cold_load_seconds": 3.2549996831221506e-06,
+  "total_wall_seconds": 23.666267470999628,
+  "successes": 0,
+  "tasks": 8,
+  "p50_seconds": 2.595120982000026,
+  "p95_seconds": 5.856295040999612,
+  "client_process_peak_rss_bytes": 18743296,
+  "remote_server_memory_bytes": null,
+  "estimated_execution_usd": null,
+  "estimated_cold_load_usd": null,
+  "training_cost_usd": null,
+  "rows": [
+    {
+      "task_id": "fractional-01",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.4791579450002246,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 108,
+      "output_tokens": 34,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "(((3 * 3) + 8) * 8) / 8",
+          "seconds": 2.478752644999986,
+          "input_tokens": 108,
+          "output_tokens": 34,
+          "reason": "Must use each supplied number exactly once"
+        }
+      ]
+    },
+    {
+      "task_id": "fractional-02",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.4051617229997646,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 108,
+      "output_tokens": 27,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "(((5+5)+(5/5))+5)",
+          "seconds": 2.404941609999696,
+          "input_tokens": 108,
+          "output_tokens": 27,
+          "reason": "Must use each supplied number exactly once"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-01",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.1787852600000406,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 107,
+      "output_tokens": 27,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "(((2+3)-4)*1+2",
+          "seconds": 2.178622034,
+          "input_tokens": 107,
+          "output_tokens": 27,
+          "reason": "'(' was never closed (<unknown>, line 1)"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-02",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.853142982999998,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 107,
+      "output_tokens": 34,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "(((4 * 4) / 4) + 4) + 4",
+          "seconds": 2.852941849000672,
+          "input_tokens": 107,
+          "output_tokens": 34,
+          "reason": "Must use each supplied number exactly once"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-03",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.8382352830003583,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 107,
+      "output_tokens": 38,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "((((2 + 2) * 4) + 3) / 2) + 6",
+          "seconds": 2.837992906999716,
+          "input_tokens": 107,
+          "output_tokens": 38,
+          "reason": "Must use each supplied number exactly once"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-04",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.3205174970007647,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 107,
+      "output_tokens": 31,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "6 * (6 / 6) / 6 - 6",
+          "seconds": 2.320298616999935,
+          "input_tokens": 107,
+          "output_tokens": 31,
+          "reason": "Must use each supplied number exactly once"
+        }
+      ]
+    },
+    {
+      "task_id": "mixed-01",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 5.856295040999612,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "{\n  \"expression\": \"(((((((9 + ((((5 + ((2 + (((((((((((((((((2 * 7)))))))))))))))))))))))))))) * 25) / 5) - 7) * 7 / 7 - 9 + 7 + 5 - 2 - 2 * 2 / 2 / 2 + 2 + 5 - 7 - 9",
+          "seconds": 5.856144643999869,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "unterminated string literal (detected at line 2) (<unknown>, line 2)"
+        }
+      ]
+    },
+    {
+      "task_id": "mixed-02",
+      "status": "no_verified_solution",
+      "expression": null,
+      "seconds": 2.711084018999827,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 0,
+      "generated": 0,
+      "input_tokens": 107,
+      "output_tokens": 42,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "(((((3 + 3) * 6) + 1) / 4) - 1) / 2",
+          "seconds": 2.7108787699999084,
+          "input_tokens": 107,
+          "output_tokens": 42,
+          "reason": "Must use each supplied number exactly once"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "No cost is assumed zero when a tariff is missing.",
+    "No exact-result cache is read during benchmarking.",
+    "Budgets are cooperative: an in-flight kernel may finish late; late answers count as failures.",
+    "Peak RSS is process memory, not GPU VRAM or remote server memory."
+  ]
+}

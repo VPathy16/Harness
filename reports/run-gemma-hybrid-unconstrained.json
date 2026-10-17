@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "scope": "arithmetic smoke suite; not general intelligence evidence",
+  "task_spec_sha256": "7ad20c7300a1752c54b2284712d4998cb23a5bfc53f1dd375c70575af896ed6d",
+  "configuration": {
+    "command": "bench",
+    "tasks": "examples/arithmetic.json",
+    "mode": "hybrid",
+    "backend": "http",
+    "base_url": "http://127.0.0.1:8087/v1",
+    "model": "gemma-e2b-q4",
+    "seed": 7,
+    "llama_no_thinking": true,
+    "models": "models",
+    "device": "cpu",
+    "ranker": "none",
+    "ranker_calls": 0,
+    "max_calls": 8,
+    "max_tokens": 96,
+    "seconds": 30.0,
+    "expansions": 10000,
+    "usd_per_hour": null,
+    "input_usd_per_million": null,
+    "output_usd_per_million": null,
+    "workspace": "workspace",
+    "output": "reports/run-gemma-hybrid.json"
+  },
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "cold_load_seconds": 2.933999894594308e-06,
+  "total_wall_seconds": 44.103451156999654,
+  "successes": 8,
+  "tasks": 8,
+  "p50_seconds": 5.312504670500402,
+  "p95_seconds": 6.535729155999434,
+  "client_process_peak_rss_bytes": 18874368,
+  "remote_server_memory_bytes": null,
+  "estimated_execution_usd": null,
+  "estimated_cold_load_usd": null,
+  "training_cost_usd": null,
+  "rows": [
+    {
+      "task_id": "fractional-01",
+      "status": "verified",
+      "expression": "(8/(3-(8/3)))",
+      "seconds": 5.79828330700002,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 107,
+      "generated": 353,
+      "input_tokens": 108,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "The problem has a solution. The expression is 24 / 3 / 3 / 8 - 8 - 8 - 8 - 3 - 3 = 24 / 3 / 3 * 8 - 8 - 8 - 8 - 3 / 3 = 24 / 3 / 3 / 8 - 8 - 8 - 8 - 3 / 3 = 24",
+          "seconds": 5.792391455999677,
+          "input_tokens": 108,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "(8/(3-(8/3)))"
+        }
+      ]
+    },
+    {
+      "task_id": "fractional-02",
+      "status": "verified",
+      "expression": "(5*(5-(1/5)))",
+      "seconds": 4.959422940999502,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 41,
+      "generated": 138,
+      "input_tokens": 108,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "The expression you provided is:\n\n1 + 5 + 5 + 5\nThe result of this expression is:\n\n24\nThe expression you provided is:\n\n1 + 5 + 5 + 5\nThe result of this expression is:\n\n24\nThe expression you provided is:\n\n1 + 5 + 5 + 5\nThe result of this expression is:\n\n24\nThe expression you provided is:\n\n1 +",
+          "seconds": 4.957798121999986,
+          "input_tokens": 108,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "(5*(5-(1/5)))"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-01",
+      "status": "verified",
+      "expression": "(4*(3+(1+2)))",
+      "seconds": 6.177964482999414,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 9,
+      "generated": 67,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "Sure, I can help you with this. The goal is to reach the target number using the given numbers. Here\u2019s how you can solve it:\nFirst, let\u2019s analyze the problem. We have 4 numbers, 1, 2, 3, and 4. We want to reach the target number 24. The key here is to use every number exactly once.\nOne way to approach this is by using binary operations. You can",
+          "seconds": 6.1771914979999565,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "invalid character '\u2019' (U+2019) (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "(4*(3+(1+2)))"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-02",
+      "status": "verified",
+      "expression": "((4+4)+(4*4))",
+      "seconds": 6.535729155999434,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 4,
+      "generated": 24,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "The problem given is an arithmetic puzzle that requires using binary operations (addition, subtraction, multiplication, division, and parentheses) with the given numbers to reach the target result of 24. The key to solving this problem is to create a mathematical expression that represents the given numbers and operations.\n\nOne possible way to solve this problem is to create an expression using the given numbers and operations. For example, one possible expression is:\n\n(4 * 4) + 4",
+          "seconds": 6.535208211000281,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "((4+4)+(4*4))"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-03",
+      "status": "verified",
+      "expression": "((3-2)*(4*6))",
+      "seconds": 4.938711546000377,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 50,
+      "generated": 217,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "The problem here is that the number of operations is much larger than the number of numbers given. We can simplify the problem by using the following approach:\n\n1. Use the first three numbers to form the largest possible binary number. For example, if the first three numbers are 2, 3, and 4, the largest possible binary number is 110010001001001000100010",
+          "seconds": 4.93682220699975,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "((3-2)*(4*6))"
+        }
+      ]
+    },
+    {
+      "task_id": "basic-04",
+      "status": "verified",
+      "expression": "((6+6)+(6+6))",
+      "seconds": 5.5373261450004065,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 3,
+      "generated": 18,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "Given the numbers 6, 6, 6, 6, the target is 24, and the rules are to use every given number exactly once, and only binary operations are allowed. \n```\n\n### Solution:\n\nThe correct expression is:\n\n```\n6 * (6 + 6)\n```\n\nThe calculation is as follows:\n\n```",
+          "seconds": 5.536736136999934,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "((6+6)+(6+6))"
+        }
+      ]
+    },
+    {
+      "task_id": "mixed-01",
+      "status": "verified",
+      "expression": "((5*7)-(2+9))",
+      "seconds": 5.0466364530002465,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 177,
+      "generated": 651,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "The solution for this puzzle is:\n{\"expression\": \"(((((((9 + ((((7 + ((((2 / 5) * 2) * 5) * 2) * 2) * 9) * 2) * 2) * 2) * 2) * 2) * 2) * 2) * 2) + 24)\"\nThis expression evaluates to 24.\n<",
+          "seconds": 5.0407474849998835,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "((5*7)-(2+9))"
+        }
+      ]
+    },
+    {
+      "task_id": "mixed-02",
+      "status": "verified",
+      "expression": "(6/(1-(3/4)))",
+      "seconds": 5.087683196000398,
+      "model_calls": 1,
+      "ranker_calls": 0,
+      "expanded": 195,
+      "generated": 533,
+      "input_tokens": 107,
+      "output_tokens": 96,
+      "estimated_execution_usd": null,
+      "trace": [
+        {
+          "event": "model_proposal",
+          "valid": false,
+          "late": false,
+          "expression": "The problem given is an arithmetic puzzle that requires solving a mathematical equation using binary operators and parentheses. The goal is to reach a target value of 24 using only the given numbers: 1, 3, 4, 6. The rules state that each number must be used exactly once, and the allowed operations include binary addition (+), binary subtraction (-), multiplication (*), and division (/). Additionally, the use of parentheses is permitted to modify the order of operations.",
+          "seconds": 5.082520744000249,
+          "input_tokens": 107,
+          "output_tokens": 96,
+          "reason": "invalid syntax (<unknown>, line 1)"
+        },
+        {
+          "event": "verified",
+          "expression": "(6/(1-(3/4)))"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "No cost is assumed zero when a tariff is missing.",
+    "No exact-result cache is read during benchmarking.",
+    "Budgets are cooperative: an in-flight kernel may finish late; late answers count as failures.",
+    "Peak RSS is process memory, not GPU VRAM or remote server memory."
+  ]
+}

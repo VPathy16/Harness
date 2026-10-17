@@ -1,0 +1,29 @@
+{
+  "worker_command": [
+    "/workspace/scratch/7f07013bdc79/llama-runtime/llama-b11669/llama-server",
+    "-m",
+    "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+    "-c",
+    "2048",
+    "-t",
+    "4",
+    "--parallel",
+    "1",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8087"
+  ],
+  "scope": "3 arithmetic tasks, no 120B baseline",
+  "worker_peak_rss_bytes": null,
+  "runs": [
+    "reports/harder-gemma-direct.json",
+    "reports/harder-gemma-hybrid.json"
+  ],
+  "cost_usd": null,
+  "worker_ready_seconds": 2.7711206399999355,
+  "status": "completed",
+  "total_seconds": 35.475201965999986,
+  "worker_peak_rss_observed_bytes": 10653696,
+  "memory_note": "Process inspection did not expose a credible inference-worker RSS; memory is unmeasured."
+}

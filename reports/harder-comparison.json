@@ -1,0 +1,11 @@
+{
+  "scope": "descriptive only; no statistical/general intelligence claim",
+  "harness_accuracy": 1.0,
+  "baseline_accuracy": 0.0,
+  "higher_accuracy": true,
+  "lower_warm_p50": false,
+  "lower_warm_p95": true,
+  "lower_execution_cost": null,
+  "costs_complete": false,
+  "notes": "Training/amortization and service hardware are not automatically measured; inspect cold loading separately."
+}

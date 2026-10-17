@@ -1,0 +1,633 @@
+{
+  "task": {
+    "pairs": 5,
+    "capacity": 3,
+    "people": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5"
+    ],
+    "start": "Everyone and boat on left bank",
+    "goal": "Everyone on right bank",
+    "rules": [
+      "a1 is paired with A1, a2 with A2, and so on.",
+      "Each crossing transports 1 to capacity people from the boat's bank.",
+      "Boat alternates banks, starting left to right; no empty crossing.",
+      "On either bank and inside the boat, an actor ai may be with another agent Aj only when Ai is also present."
+    ]
+  },
+  "task_sha256": "f85741aaf40f8dfc423edd986b90a147a3a70328fbc7ae7fb6c643b871ff621e",
+  "configuration": {
+    "pairs": 5,
+    "capacity": 3,
+    "server": "/workspace/scratch/7f07013bdc79/llama-runtime/llama-b11669/llama-server",
+    "gguf": "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+    "port": 8088,
+    "seconds": 120,
+    "max_tokens": 2048,
+    "output": "reports/river-run.json"
+  },
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "symbolic": {
+    "status": "verified",
+    "moves": [
+      [
+        "a1",
+        "a2"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "a1",
+        "a3",
+        "a4"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "A2",
+        "A3",
+        "A4"
+      ],
+      [
+        "a2",
+        "A2"
+      ],
+      [
+        "A1",
+        "A2",
+        "A5"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "a1",
+        "a2"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "a1",
+        "a3",
+        "a5"
+      ]
+    ],
+    "expanded": 173,
+    "candidate_crossings": 6960,
+    "visited_states": 179,
+    "seconds": 0.0042684250001912005,
+    "shortest_path": true
+  },
+  "verification": {
+    "valid": true,
+    "reason": "Every crossing and final state verified",
+    "trace": [
+      {
+        "move": 1,
+        "direction": "L->R",
+        "passengers": [
+          "a1",
+          "a2"
+        ],
+        "left": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a3",
+          "a4",
+          "a5"
+        ],
+        "right": [
+          "a1",
+          "a2"
+        ]
+      },
+      {
+        "move": 2,
+        "direction": "R->L",
+        "passengers": [
+          "a1"
+        ],
+        "left": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a1",
+          "a3",
+          "a4",
+          "a5"
+        ],
+        "right": [
+          "a2"
+        ]
+      },
+      {
+        "move": 3,
+        "direction": "L->R",
+        "passengers": [
+          "a1",
+          "a3",
+          "a4"
+        ],
+        "left": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a5"
+        ],
+        "right": [
+          "a1",
+          "a2",
+          "a3",
+          "a4"
+        ]
+      },
+      {
+        "move": 4,
+        "direction": "R->L",
+        "passengers": [
+          "a1"
+        ],
+        "left": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a1",
+          "a5"
+        ],
+        "right": [
+          "a2",
+          "a3",
+          "a4"
+        ]
+      },
+      {
+        "move": 5,
+        "direction": "L->R",
+        "passengers": [
+          "A2",
+          "A3",
+          "A4"
+        ],
+        "left": [
+          "A1",
+          "A5",
+          "a1",
+          "a5"
+        ],
+        "right": [
+          "A2",
+          "A3",
+          "A4",
+          "a2",
+          "a3",
+          "a4"
+        ]
+      },
+      {
+        "move": 6,
+        "direction": "R->L",
+        "passengers": [
+          "a2",
+          "A2"
+        ],
+        "left": [
+          "A1",
+          "A2",
+          "A5",
+          "a1",
+          "a2",
+          "a5"
+        ],
+        "right": [
+          "A3",
+          "A4",
+          "a3",
+          "a4"
+        ]
+      },
+      {
+        "move": 7,
+        "direction": "L->R",
+        "passengers": [
+          "A1",
+          "A2",
+          "A5"
+        ],
+        "left": [
+          "a1",
+          "a2",
+          "a5"
+        ],
+        "right": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a3",
+          "a4"
+        ]
+      },
+      {
+        "move": 8,
+        "direction": "R->L",
+        "passengers": [
+          "a3"
+        ],
+        "left": [
+          "a1",
+          "a2",
+          "a3",
+          "a5"
+        ],
+        "right": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a4"
+        ]
+      },
+      {
+        "move": 9,
+        "direction": "L->R",
+        "passengers": [
+          "a1",
+          "a2"
+        ],
+        "left": [
+          "a3",
+          "a5"
+        ],
+        "right": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a1",
+          "a2",
+          "a4"
+        ]
+      },
+      {
+        "move": 10,
+        "direction": "R->L",
+        "passengers": [
+          "a1"
+        ],
+        "left": [
+          "a1",
+          "a3",
+          "a5"
+        ],
+        "right": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a2",
+          "a4"
+        ]
+      },
+      {
+        "move": 11,
+        "direction": "L->R",
+        "passengers": [
+          "a1",
+          "a3",
+          "a5"
+        ],
+        "left": [],
+        "right": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "a1",
+          "a2",
+          "a3",
+          "a4",
+          "a5"
+        ]
+      }
+    ]
+  },
+  "larger_model_run_locally": false,
+  "cost_usd": null,
+  "notes": [
+    "BFS and verifier use independently implemented safety checks.",
+    "No cached or embedded solution sequence; solver enumerates passenger combinations.",
+    "Domain rules were manually implemented, not inferred by a model.",
+    "Hybrid reuses the direct proposal, then searches only if verification fails.",
+    "Laya, EmbeddingGemma and TimesFM are not used."
+  ],
+  "worker_command": [
+    "/workspace/scratch/7f07013bdc79/llama-runtime/llama-b11669/llama-server",
+    "-m",
+    "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+    "-c",
+    "4096",
+    "-t",
+    "4",
+    "--parallel",
+    "1",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8088"
+  ],
+  "cold_load_seconds": 2.775541940999574,
+  "request": {
+    "model": "gemma-e2b-q4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Solve this river-crossing planning task. Return a JSON object with key moves: a list of passenger lists, one list for each crossing. Include the complete solution, not an algorithm. The first crossing is left to right; directions alternate. Check boat safety and both banks after every move. {\"pairs\": 5, \"capacity\": 3, \"people\": [\"a1\", \"a2\", \"a3\", \"a4\", \"a5\", \"A1\", \"A2\", \"A3\", \"A4\", \"A5\"], \"start\": \"Everyone and boat on left bank\", \"goal\": \"Everyone on right bank\", \"rules\": [\"a1 is paired with A1, a2 with A2, and so on.\", \"Each crossing transports 1 to capacity people from the boat's bank.\", \"Boat alternates banks, starting left to right; no empty crossing.\", \"On either bank and inside the boat, an actor ai may be with another agent Aj only when Ai is also present.\"]}"
+      }
+    ],
+    "temperature": 0.7,
+    "seed": 7,
+    "max_tokens": 2048,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "crossings",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "moves": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 127,
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 3,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "a1",
+                    "a2",
+                    "a3",
+                    "a4",
+                    "a5",
+                    "A1",
+                    "A2",
+                    "A3",
+                    "A4",
+                    "A5"
+                  ]
+                }
+              }
+            }
+          },
+          "required": [
+            "moves"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "model_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"a1\", \"A1\"],\n    [\"a1\", \"A2\"],\n    [\"a1\", \"A3\"],\n    [\"a1\", \"A4\"],\n    [\"a1\", \"A5\"],\n    [\"a2\", \"A2\"],\n    [\"a3\", \"A3\"],\n    [\"a4\", \"A4\"],\n    [\"a5\", \"A5\"]\n  ]\n}"
+        }
+      }
+    ],
+    "created": 1792267575,
+    "model": "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+    "system_fingerprint": "b11669-620d2225c",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 108,
+      "prompt_tokens": 235,
+      "total_tokens": 343,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-IsNqGAKutVIkoBU1a8ovTbbs6jpNG5Li",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 235,
+      "prompt_ms": 2198.42,
+      "prompt_per_token_ms": 9.354978723404257,
+      "prompt_per_second": 106.89495182904085,
+      "predicted_n": 108,
+      "predicted_ms": 5250.601,
+      "predicted_per_token_ms": 49.07103738317757,
+      "predicted_per_second": 20.37861951422323
+    }
+  },
+  "direct": {
+    "status": "no_verified_solution",
+    "seconds": 7.455240139000125,
+    "moves": [
+      [
+        "a1",
+        "A1"
+      ],
+      [
+        "a1",
+        "A2"
+      ],
+      [
+        "a1",
+        "A3"
+      ],
+      [
+        "a1",
+        "A4"
+      ],
+      [
+        "a1",
+        "A5"
+      ],
+      [
+        "a2",
+        "A2"
+      ],
+      [
+        "a3",
+        "A3"
+      ],
+      [
+        "a4",
+        "A4"
+      ],
+      [
+        "a5",
+        "A5"
+      ]
+    ],
+    "verification": {
+      "valid": false,
+      "reason": "Move 2: passenger absent from departure bank",
+      "trace": [
+        {
+          "move": 1,
+          "direction": "L->R",
+          "passengers": [
+            "a1",
+            "A1"
+          ],
+          "left": [
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "a2",
+            "a3",
+            "a4",
+            "a5"
+          ],
+          "right": [
+            "A1",
+            "a1"
+          ]
+        }
+      ]
+    }
+  },
+  "hybrid": {
+    "status": "verified",
+    "seconds": 7.459275020999485,
+    "moves": [
+      [
+        "a1",
+        "a2"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "a1",
+        "a3",
+        "a4"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "A2",
+        "A3",
+        "A4"
+      ],
+      [
+        "a2",
+        "A2"
+      ],
+      [
+        "A1",
+        "A2",
+        "A5"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "a1",
+        "a2"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "a1",
+        "a3",
+        "a5"
+      ]
+    ],
+    "search_used": true,
+    "shared_direct_proposal": true,
+    "search": {
+      "status": "verified",
+      "moves": [
+        [
+          "a1",
+          "a2"
+        ],
+        [
+          "a1"
+        ],
+        [
+          "a1",
+          "a3",
+          "a4"
+        ],
+        [
+          "a1"
+        ],
+        [
+          "A2",
+          "A3",
+          "A4"
+        ],
+        [
+          "a2",
+          "A2"
+        ],
+        [
+          "A1",
+          "A2",
+          "A5"
+        ],
+        [
+          "a3"
+        ],
+        [
+          "a1",
+          "a2"
+        ],
+        [
+          "a1"
+        ],
+        [
+          "a1",
+          "a3",
+          "a5"
+        ]
+      ],
+      "expanded": 173,
+      "candidate_crossings": 6960,
+      "visited_states": 179,
+      "seconds": 0.003991907999989053,
+      "shortest_path": true
+    }
+  }
+}

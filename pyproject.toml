@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harness-runtime"
+version = "0.1.0"
+description = "Harness: small-model compilation, bounded search and independent verification"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+download = ["huggingface-hub>=0.34", "socksio>=1.0"]
+models = ["torch>=2.6", "torchvision", "transformers>=5", "accelerate>=1", "sentence-transformers>=5", "laya>=0.3.20", "numpy>=2", "psutil>=5"]
+
+[project.scripts]
+harness = "thinking_runtime.cli:main"
+thinking-runtime = "thinking_runtime.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["thinking_runtime*"]

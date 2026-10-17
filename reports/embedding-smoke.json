@@ -1,0 +1,22 @@
+{
+  "scope": "component load/inference checks, not a quality benchmark",
+  "results": [
+    {
+      "component": "embedding",
+      "status": "inference_completed",
+      "load_seconds": 10.311993179999718,
+      "inference_seconds": 0.2706119879999278,
+      "peak_rss_bytes": 2455986176,
+      "output": [
+        {
+          "text": "SQL queries retrieve database records.",
+          "score": 0.8016238808631897
+        },
+        {
+          "text": "Rain falls from clouds.",
+          "score": 0.5838223695755005
+        }
+      ]
+    }
+  ]
+}

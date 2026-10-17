@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "name": "timesfm",
+      "repo_id": "google/timesfm-2.5-200m-pytorch",
+      "revision": "1d952420fba87f3c6dee4f240de0f1a0fbc790e3",
+      "status": "downloaded",
+      "files": [
+        {
+          "path": "timesfm/README.md",
+          "bytes": 2496,
+          "sha256": "4c3f16633a3d8b9324904bf004429aced2ee009b84e64effb59a902520cc7f2e"
+        },
+        {
+          "path": "timesfm/config.json",
+          "bytes": 475,
+          "sha256": "cd3315b760d5cc7e278d7afdf41b897031ced888fc6c115bd9b3ac0ea2c47408"
+        },
+        {
+          "path": "timesfm/model.safetensors",
+          "bytes": 925181104,
+          "sha256": "2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8"
+        }
+      ],
+      "errors": [],
+      "elapsed_seconds": 67.226
+    },
+    {
+      "name": "laya",
+      "repo_id": "convaiinnovations/laya",
+      "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+      "status": "downloaded",
+      "files": [
+        {
+          "path": "laya/README.md",
+          "bytes": 23187,
+          "sha256": "00355613796b3f5860b0d5b20392381d26580ec242e04a1fd150c7f116858602"
+        },
+        {
+          "path": "laya/config.json",
+          "bytes": 160,
+          "sha256": "7add7c041b53f7091e65908553af79ab3f077946e5f2312d510ae13b17c7c134"
+        },
+        {
+          "path": "laya/encoder/config.json",
+          "bytes": 2083,
+          "sha256": "bf3ab80598fdccf414855a2ce80f22859e4492d06ca8a62ddd1cfb63972f8979"
+        },
+        {
+          "path": "laya/model.safetensors",
+          "bytes": 842609210,
+          "sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c"
+        },
+        {
+          "path": "laya/rl_agent_config.json",
+          "bytes": 745,
+          "sha256": "ae287b56bbcf5f8c4f4541ae9dfd00c914c4c48b940b8398c3058af37ba92bbd"
+        },
+        {
+          "path": "laya/tokenizer/tokenizer.json",
+          "bytes": 3583228,
+          "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30"
+        },
+        {
+          "path": "laya/tokenizer/tokenizer_config.json",
+          "bytes": 308,
+          "sha256": "50044de60daaa73df97d262e15a40d4faf0160e7d742df64b377877a1320dd12"
+        }
+      ],
+      "errors": [],
+      "elapsed_seconds": 75.775
+    },
+    {
+      "name": "embedding",
+      "repo_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "status": "downloaded",
+      "files": [
+        {
+          "path": "embedding/1_Pooling/config.json",
+          "bytes": 90,
+          "sha256": "8759bdf7c77efc7df7723f64856a593c8943b71ee38baf2a88771fbaf78438f9"
+        },
+        {
+          "path": "embedding/2_Normalize/config.json",
+          "bytes": 97,
+          "sha256": "cdb09dfca347a56aa2d691744e38d5ad3c7cbc2834e7181272b9a15328b82524"
+        },
+        {
+          "path": "embedding/README.md",
+          "bytes": 21730,
+          "sha256": "b677a0ee2818c36f091b65fd3d9b4baea9f04d53b02b49cae916c74bf9682037"
+        },
+        {
+          "path": "embedding/chat_template.jinja",
+          "bytes": 1016,
+          "sha256": "4b852efc0b9960283e735363331e6f325b33bc74bdbaa076f595bc4e9b94d85e"
+        },
+        {
+          "path": "embedding/config.json",
+          "bytes": 4455,
+          "sha256": "b8f1e9931b57fbc054acdb445c41765d55b0074c58d145fa82839941ad1b5bb3"
+        },
+        {
+          "path": "embedding/config_sentence_transformers.json",
+          "bytes": 1565,
+          "sha256": "031e56a498d33c349ab489a21885bcfe25b4fcba841149dc99e1e90d4a7c28f5"
+        },
+        {
+          "path": "embedding/model.safetensors",
+          "bytes": 1488915288,
+          "sha256": "197a32965d4b1105faf060417baa899e193fb73cd401f42ec9295234d5553d79"
+        },
+        {
+          "path": "embedding/modules.json",
+          "bytes": 413,
+          "sha256": "3d02572a0455b832de67fb8e63a54981bc7e8b46e337c95e917bd8122a533bfd"
+        },
+        {
+          "path": "embedding/preprocessor_config.json",
+          "bytes": 511,
+          "sha256": "ea2ae257e901064abdd98dceb19f2b0da06af600bed15e0f99f5c85c37ee9d78"
+        },
+        {
+          "path": "embedding/processor_config.json",
+          "bytes": 1788,
+          "sha256": "168f6a08522f3ce5dea596d94d003af2fd691742d4f41fe1f9d8cce76bfbf69c"
+        },
+        {
+          "path": "embedding/sentence_bert_config.json",
+          "bytes": 747,
+          "sha256": "b1bcd9f2dce3ae863b359e87d0710b5dbc3314a59ecb4e2f97c7778fc8e4b228"
+        },
+        {
+          "path": "embedding/tokenizer.json",
+          "bytes": 32170510,
+          "sha256": "4d777ef5bdc1aa36227abdfb77c3e49e7b9c892d16e1b6bda41c393504828be4"
+        },
+        {
+          "path": "embedding/tokenizer.model",
+          "bytes": 4689013,
+          "sha256": "e594c8a90eb08d8bda498ff4747977dc827ae0c3c56b5c0d41a605a22d02ef03"
+        },
+        {
+          "path": "embedding/tokenizer_config.json",
+          "bytes": 1599,
+          "sha256": "17bd5d6e9364ca49a534e1502076593317c298d4a663623091ed45388f004874"
+        }
+      ],
+      "errors": [],
+      "elapsed_seconds": 143.648
+    },
+    {
+      "name": "gemma",
+      "repo_id": "google/gemma-4-E2B",
+      "revision": "d29ff6b45f081a49ee2733a859c9c9c2d95d1a6f",
+      "status": "downloaded",
+      "files": [
+        {
+          "path": "gemma/README.md",
+          "bytes": 27811,
+          "sha256": "4c4e89a23e46a5703148b4de82eafb5b650abc8f50ff616c090fb659602eb4a6"
+        },
+        {
+          "path": "gemma/config.json",
+          "bytes": 4914,
+          "sha256": "e5faef0dd1a8f2437f6010721146b85433eaa90e679ef011e803c7ffefae73b8"
+        },
+        {
+          "path": "gemma/generation_config.json",
+          "bytes": 181,
+          "sha256": "de16fa1d777387d5fe6df54a9565d9c0f1213f7b31f2a2cf44805e27686d9c7c"
+        },
+        {
+          "path": "gemma/model.safetensors",
+          "bytes": 10246621918,
+          "sha256": "76dc84a5a805a2c8b91e9ccc00b8dbf8f4a99bf0d56ab25832f6e6addd4f7f57"
+        },
+        {
+          "path": "gemma/processor_config.json",
+          "bytes": 1689,
+          "sha256": "32bdf45d2ad4cc29a0822ddd157a182de76644f0419a6228d151495256e9813c"
+        },
+        {
+          "path": "gemma/tokenizer.json",
+          "bytes": 32170070,
+          "sha256": "12bac982b793c44b03d52a250a9f0d0b666813da566b910c24a6da0695fd11e6"
+        },
+        {
+          "path": "gemma/tokenizer_config.json",
+          "bytes": 906,
+          "sha256": "12754e3442e47c1a1c55d550b617fc47ae227e8156ed1b1de0d8428195768b5c"
+        }
+      ],
+      "errors": [],
+      "elapsed_seconds": 342.86
+    }
+  ],
+  "weights_in_git": false
+}

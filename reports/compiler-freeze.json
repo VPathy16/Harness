@@ -1,0 +1,7 @@
+{
+  "purpose": "Frozen before the first model request; reference IR is evaluator-only, never supplied to Gemma or substituted into execution.",
+  "sha256": {
+    "thinking_runtime/constraints.py": "1ad2ebeae1508621c84bee53ba6c677ab7c6b2c842bba5fc5ef2ec14dda14be0",
+    "examples/compiler-cases.json": "8a73503602d40def124528c72038897ed1a5ccf3cac4187798a83ae0b0bee63d"
+  }
+}

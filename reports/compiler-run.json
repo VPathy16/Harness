@@ -1,0 +1,1013 @@
+{
+  "configuration": {
+    "server": "/workspace/scratch/7f07013bdc79/llama-runtime/llama-b11669/llama-server",
+    "gguf": "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+    "port": 8089,
+    "seconds": 120
+  },
+  "freeze": {
+    "purpose": "Frozen before the first model request; reference IR is evaluator-only, never supplied to Gemma or substituted into execution.",
+    "sha256": {
+      "thinking_runtime/constraints.py": "1ad2ebeae1508621c84bee53ba6c677ab7c6b2c842bba5fc5ef2ec14dda14be0",
+      "examples/compiler-cases.json": "8a73503602d40def124528c72038897ed1a5ccf3cac4187798a83ae0b0bee63d"
+    }
+  },
+  "rows": [
+    {
+      "id": "six-job-schedule",
+      "problem": "Schedule six one-hour jobs A, B, C, D, E and F into slots 1 through 6. Each job occupies exactly one slot and no jobs share a slot. A must happen before D. B must be immediately before E. C must happen after A and before F. D is fixed in slot 4. F is fixed in slot 6. B cannot be in slot 1. Find a valid schedule.",
+      "request": {
+        "model": "gemma-e2b-q4",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Translate the user's problem into this integer constraint language. Do not solve it.\nReturn JSON with variables and constraints. Preserve every rule, even contradictions.\nvariables: list of {name: string, domain: list of allowed integers}.\nconstraints: list of {op: string, vars: list of variable names, value: integer}.\nOperators:\nall_different: all listed variables have different values; value must be 0.\neq: exactly one variable equals value.\nneq: exactly one variable differs from value.\nlt: exactly two variables; the first is strictly less than the second; value is 0.\noffset: exactly two variables; second = first + value.\nsum_eq: sum of listed variables equals value.\nUse existing variable names exactly. Include complete allowed domains. Use only these operators.\nExample: 'X and Y take distinct values in 0,1,2; X is smaller than Y.' becomes\n{\"variables\":[{\"name\":\"X\",\"domain\":[0,1,2]},{\"name\":\"Y\",\"domain\":[0,1,2]}],\"constraints\":[{\"op\":\"all_different\",\"vars\":[\"X\",\"Y\"],\"value\":0},{\"op\":\"lt\",\"vars\":[\"X\",\"Y\"],\"value\":0}]}.\nOutput only the JSON object. No explanation or code.\n\nProblem:\nSchedule six one-hour jobs A, B, C, D, E and F into slots 1 through 6. Each job occupies exactly one slot and no jobs share a slot. A must happen before D. B must be immediately before E. C must happen after A and before F. D is fixed in slot 4. F is fixed in slot 6. B cannot be in slot 1. Find a valid schedule."
+          }
+        ],
+        "temperature": 0,
+        "seed": 7,
+        "max_tokens": 1800,
+        "cache_prompt": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "constraint_ir",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "variables": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 10,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+                      },
+                      "domain": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 12,
+                        "items": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "domain"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "constraints": {
+                  "type": "array",
+                  "maxItems": 50,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string",
+                        "enum": [
+                          "all_different",
+                          "eq",
+                          "neq",
+                          "lt",
+                          "offset",
+                          "sum_eq"
+                        ]
+                      },
+                      "vars": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+                        }
+                      },
+                      "value": {
+                        "type": "integer",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      }
+                    },
+                    "required": [
+                      "op",
+                      "vars",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "variables",
+                "constraints"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "compile_seconds": 78.08874569599993,
+      "model_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n\"variables\": [\n{\n\"name\": \"A\",\n\"domain\": [1, 2, 3, 4, 5, 6]\n},\n{\n\"name\": \"B\",\n\"domain\": [1, 2, 3, 4, 5, 6]\n},\n{\n\"name\": \"C\",\n\"domain\": [1, 2, 3, 4, 5, 6]\n},\n{\n\"name\": \"D\",\n\"domain\": [1, 2, 3, 4, 5, 6]\n},\n{\n\"name\": \"E\",\n\"domain\": [1, 2, 3, 4, 5, 6]\n},\n{\n\"name\": \"F\",\n\"domain\": [1, 2, 3, 4, 5, 6]\n}\n],\n\"constraints\": [\n{\n\"op\": \"all_different\",\n\"vars\": [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"lt\",\n\"vars\": [\"A\", \"D\"],\n\"value\": 0\n},\n{\n\"op\": \"lt\",\n\"vars\": [\"B\", \"E\"],\n\"value\": 0\n},\n{\n\"op\": \"lt\",\n\"vars\": [\"C\", \"F\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"A\"],\n\"value\": 1\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"C\"],\n\"value\": 3\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"D\"],\n\"value\": 4\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"F\"],\n\"value\": 6\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"B\"],\n\"value\": 2\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"E\"],\n\"value\": 5\n}\n]\n}"
+            }
+          }
+        ],
+        "created": 1792268093,
+        "model": "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+        "system_fingerprint": "b11669-620d2225c",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 1444,
+          "prompt_tokens": 389,
+          "total_tokens": 1833,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-mUXeMbtbX7qrGmAqbVsHQRYzJlq2nibW",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 389,
+          "prompt_ms": 3434.792,
+          "prompt_per_token_ms": 8.829799485861182,
+          "prompt_per_second": 113.2528549035866,
+          "predicted_n": 1444,
+          "predicted_ms": 74648.118,
+          "predicted_per_token_ms": 51.73119750519751,
+          "predicted_per_second": 19.330694981486335
+        }
+      },
+      "schema_valid": true,
+      "compiled_ir": {
+        "variables": [
+          {
+            "name": "A",
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "name": "B",
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "name": "C",
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "name": "D",
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "name": "E",
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "name": "F",
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "constraints": [
+          {
+            "op": "all_different",
+            "vars": [
+              "A",
+              "B",
+              "C",
+              "D",
+              "E",
+              "F"
+            ],
+            "value": 0
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "lt",
+            "vars": [
+              "A",
+              "D"
+            ],
+            "value": 0
+          },
+          {
+            "op": "lt",
+            "vars": [
+              "B",
+              "E"
+            ],
+            "value": 0
+          },
+          {
+            "op": "lt",
+            "vars": [
+              "C",
+              "F"
+            ],
+            "value": 0
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "A"
+            ],
+            "value": 1
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "C"
+            ],
+            "value": 3
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "D"
+            ],
+            "value": 4
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "F"
+            ],
+            "value": 6
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "B"
+            ],
+            "value": 2
+          },
+          {
+            "op": "eq",
+            "vars": [
+              "E"
+            ],
+            "value": 5
+          }
+        ]
+      },
+      "execution": {
+        "status": "verified",
+        "assignment": {
+          "B": 2,
+          "D": 4,
+          "E": 5,
+          "F": 6,
+          "A": 1,
+          "C": 3
+        },
+        "nodes": 7,
+        "seconds": 0.00020568000036291778
+      },
+      "pipeline_seconds": 78.08912005000002,
+      "semantic_audit": {
+        "equivalent": false,
+        "reference_solution_count": 1,
+        "candidate_solution_count": 1,
+        "missing_solutions": 1,
+        "extra_solutions": 1
+      },
+      "answer_satisfies_reference": false,
+      "end_to_end_pass": false,
+      "audit_seconds": 2.921492396000758
+    },
+    {
+      "id": "robot-bays",
+      "problem": "Assign robots K, L, M and N to bays numbered 1 through 4. Every robot gets one bay and every bay holds one robot. K must use bay 3. L must use the bay immediately after the bay of N. M must use bay 4. Find an assignment.",
+      "request": {
+        "model": "gemma-e2b-q4",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Translate the user's problem into this integer constraint language. Do not solve it.\nReturn JSON with variables and constraints. Preserve every rule, even contradictions.\nvariables: list of {name: string, domain: list of allowed integers}.\nconstraints: list of {op: string, vars: list of variable names, value: integer}.\nOperators:\nall_different: all listed variables have different values; value must be 0.\neq: exactly one variable equals value.\nneq: exactly one variable differs from value.\nlt: exactly two variables; the first is strictly less than the second; value is 0.\noffset: exactly two variables; second = first + value.\nsum_eq: sum of listed variables equals value.\nUse existing variable names exactly. Include complete allowed domains. Use only these operators.\nExample: 'X and Y take distinct values in 0,1,2; X is smaller than Y.' becomes\n{\"variables\":[{\"name\":\"X\",\"domain\":[0,1,2]},{\"name\":\"Y\",\"domain\":[0,1,2]}],\"constraints\":[{\"op\":\"all_different\",\"vars\":[\"X\",\"Y\"],\"value\":0},{\"op\":\"lt\",\"vars\":[\"X\",\"Y\"],\"value\":0}]}.\nOutput only the JSON object. No explanation or code.\n\nProblem:\nAssign robots K, L, M and N to bays numbered 1 through 4. Every robot gets one bay and every bay holds one robot. K must use bay 3. L must use the bay immediately after the bay of N. M must use bay 4. Find an assignment."
+          }
+        ],
+        "temperature": 0,
+        "seed": 7,
+        "max_tokens": 1800,
+        "cache_prompt": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "constraint_ir",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "variables": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 10,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+                      },
+                      "domain": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 12,
+                        "items": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "domain"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "constraints": {
+                  "type": "array",
+                  "maxItems": 50,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string",
+                        "enum": [
+                          "all_different",
+                          "eq",
+                          "neq",
+                          "lt",
+                          "offset",
+                          "sum_eq"
+                        ]
+                      },
+                      "vars": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+                        }
+                      },
+                      "value": {
+                        "type": "integer",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      }
+                    },
+                    "required": [
+                      "op",
+                      "vars",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "variables",
+                "constraints"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "compile_seconds": 88.4529194910001,
+      "model_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n\"variables\": [\n{\n\"name\": \"K\",\n\"domain\": [1, 2, 3, 4]\n},\n{\n\"name\": \"L\",\n\"domain\": [1, 2, 3, 4]\n},\n{\n\"name\": \"M\",\n\"domain\": [1, 2, 3, 4]\n},\n{\n\"name\": \"N\",\n\"domain\": [1, 2, 3, 4]\n}\n],\n\"constraints\": [\n{\n\"op\": \"all_different\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"L\", \"M\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"N\", \"K\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n},\n{\n\"op\": \"eq\",\n\"vars\": [\"K\", \"L\", \"M\", \"N\"],\n\"value\": 0\n}\n]\n}"
+            }
+          }
+        ],
+        "created": 1792268185,
+        "model": "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+        "system_fingerprint": "b11669-620d2225c",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 1756,
+          "prompt_tokens": 360,
+          "total_tokens": 2116,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-xOQiT8iK5NXcg2iNm2tQSTCGVa89MLES",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 360,
+          "prompt_ms": 3055.191,
+          "prompt_per_token_ms": 8.486641666666666,
+          "prompt_per_second": 117.8322402756489,
+          "predicted_n": 1756,
+          "predicted_ms": 85389.367,
+          "predicted_per_token_ms": 48.65490997150997,
+          "predicted_per_second": 20.55291029385427
+        }
+      },
+      "error": "ValueError: eq/neq require one variable",
+      "end_to_end_pass": false
+    },
+    {
+      "id": "cyclic-ranks",
+      "problem": "Give R, S and T distinct integer ranks from 1 through 3. R must have a lower rank than S. S must have a lower rank than T. T must have a lower rank than R. Determine whether an assignment exists.",
+      "request": {
+        "model": "gemma-e2b-q4",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Translate the user's problem into this integer constraint language. Do not solve it.\nReturn JSON with variables and constraints. Preserve every rule, even contradictions.\nvariables: list of {name: string, domain: list of allowed integers}.\nconstraints: list of {op: string, vars: list of variable names, value: integer}.\nOperators:\nall_different: all listed variables have different values; value must be 0.\neq: exactly one variable equals value.\nneq: exactly one variable differs from value.\nlt: exactly two variables; the first is strictly less than the second; value is 0.\noffset: exactly two variables; second = first + value.\nsum_eq: sum of listed variables equals value.\nUse existing variable names exactly. Include complete allowed domains. Use only these operators.\nExample: 'X and Y take distinct values in 0,1,2; X is smaller than Y.' becomes\n{\"variables\":[{\"name\":\"X\",\"domain\":[0,1,2]},{\"name\":\"Y\",\"domain\":[0,1,2]}],\"constraints\":[{\"op\":\"all_different\",\"vars\":[\"X\",\"Y\"],\"value\":0},{\"op\":\"lt\",\"vars\":[\"X\",\"Y\"],\"value\":0}]}.\nOutput only the JSON object. No explanation or code.\n\nProblem:\nGive R, S and T distinct integer ranks from 1 through 3. R must have a lower rank than S. S must have a lower rank than T. T must have a lower rank than R. Determine whether an assignment exists."
+          }
+        ],
+        "temperature": 0,
+        "seed": 7,
+        "max_tokens": 1800,
+        "cache_prompt": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "constraint_ir",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "variables": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 10,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+                      },
+                      "domain": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 12,
+                        "items": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "domain"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "constraints": {
+                  "type": "array",
+                  "maxItems": 50,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string",
+                        "enum": [
+                          "all_different",
+                          "eq",
+                          "neq",
+                          "lt",
+                          "offset",
+                          "sum_eq"
+                        ]
+                      },
+                      "vars": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+                        }
+                      },
+                      "value": {
+                        "type": "integer",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      }
+                    },
+                    "required": [
+                      "op",
+                      "vars",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "variables",
+                "constraints"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "compile_seconds": 12.541835785999865,
+      "model_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n\"variables\": [\n{\n\"name\": \"R\",\n\"domain\": [1, 2, 3]\n},\n{\n\"name\": \"S\",\n\"domain\": [1, 2, 3]\n},\n{\n\"name\": \"T\",\n\"domain\": [1, 2, 3]\n}\n],\n\"constraints\": [\n{\n\"op\": \"all_different\",\n\"vars\": [\"R\", \"S\", \"T\"],\n\"value\": 0\n},\n{\n\"op\": \"lt\",\n\"vars\": [\"R\", \"S\"],\n\"value\": 0\n},\n{\n\"op\": \"lt\",\n\"vars\": [\"S\", \"T\"],\n\"value\": 0\n},\n{\n\"op\": \"lt\",\n\"vars\": [\"T\", \"R\"],\n\"value\": 0\n}\n]\n}"
+            }
+          }
+        ],
+        "created": 1792268197,
+        "model": "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+        "system_fingerprint": "b11669-620d2225c",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 205,
+          "prompt_tokens": 349,
+          "total_tokens": 554,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-ktxuHFCSaDrEMqukgbnYds0Txx72idyS",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 349,
+          "prompt_ms": 3284.651,
+          "prompt_per_token_ms": 9.411607449856733,
+          "prompt_per_second": 106.2517753027643,
+          "predicted_n": 205,
+          "predicted_ms": 9239.141,
+          "predicted_per_token_ms": 45.2899068627451,
+          "predicted_per_second": 22.079974750899463
+        }
+      },
+      "schema_valid": true,
+      "compiled_ir": {
+        "variables": [
+          {
+            "name": "R",
+            "domain": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "S",
+            "domain": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "T",
+            "domain": [
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "constraints": [
+          {
+            "op": "all_different",
+            "vars": [
+              "R",
+              "S",
+              "T"
+            ],
+            "value": 0
+          },
+          {
+            "op": "lt",
+            "vars": [
+              "R",
+              "S"
+            ],
+            "value": 0
+          },
+          {
+            "op": "lt",
+            "vars": [
+              "S",
+              "T"
+            ],
+            "value": 0
+          },
+          {
+            "op": "lt",
+            "vars": [
+              "T",
+              "R"
+            ],
+            "value": 0
+          }
+        ]
+      },
+      "execution": {
+        "status": "unsatisfiable",
+        "assignment": null,
+        "nodes": 7,
+        "seconds": 3.239800025767181e-05
+      },
+      "pipeline_seconds": 12.541948985999625,
+      "semantic_audit": {
+        "equivalent": true,
+        "reference_solution_count": 0,
+        "candidate_solution_count": 0,
+        "missing_solutions": 0,
+        "extra_solutions": 0
+      },
+      "answer_satisfies_reference": null,
+      "end_to_end_pass": true,
+      "audit_seconds": 0.0004782410005645943
+    }
+  ],
+  "scope": "Three newly authored instances in a limited constraint language, not unseen-in-training evidence.",
+  "gold_used_for_inference": false,
+  "one_model_call_per_case": true,
+  "cost_usd": null,
+  "notes": [
+    "No syntax or semantic repair using gold references.",
+    "References only audit candidate semantics and final answers.",
+    "Execution uses only model-generated IR.",
+    "No 120B baseline.",
+    "Laya, TimesFM and embeddings not used."
+  ],
+  "worker_command": [
+    "/workspace/scratch/7f07013bdc79/llama-runtime/llama-b11669/llama-server",
+    "-m",
+    "models/gemma-gguf/gemma-4-E2B.Q4_K_M.gguf",
+    "-c",
+    "4096",
+    "-t",
+    "4",
+    "--parallel",
+    "1",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8089"
+  ],
+  "cold_load_seconds": 3.270181330000014,
+  "passed": 1,
+  "planned_cases": 3
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "Three fixed six-number arithmetic puzzles, not a general benchmark",
+  "selection": "All three tasks specified before execution; all results retained",
+  "larger_model_tested": false,
+  "max_seconds_per_task": 60,
+  "gemma_max_output_tokens": 256,
+  "gemma_thinking_enabled": false,
+  "quantization": "Q4_K_M",
+  "seed": 7,
+  "results": [
+    {
+      "mode": "symbolic",
+      "solved": 3,
+      "tasks": 3,
+      "median_seconds": 1.603923788999964
+    },
+    {
+      "mode": "direct",
+      "solved": 0,
+      "tasks": 3,
+      "median_seconds": 3.745974024000134
+    },
+    {
+      "mode": "hybrid",
+      "solved": 3,
+      "tasks": 3,
+      "median_seconds": 6.260717652000494
+    }
+  ],
+  "cost_usd": null,
+  "conclusion": "Search solved 3/3; Gemma direct solved 0/3; Gemma plus search solved 3/3. Symbolic-only remains faster."
+}

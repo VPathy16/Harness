@@ -1,0 +1,8 @@
+{
+  "core_tests": 8,
+  "core_tests_passed": 8,
+  "symbolic_smoke_solved": 8,
+  "symbolic_smoke_tasks": 8,
+  "large_model_baseline_run": false,
+  "claimed_120b_superiority": false
+}

@@ -1,0 +1,56 @@
+{
+  "scope": "Eight arithmetic smoke tasks on CPU. Not a general benchmark.",
+  "results": [
+    {
+      "configuration": "Symbolic search",
+      "verified": 8,
+      "tasks": 8,
+      "p50_seconds": 0.0015260249997481878,
+      "p95_seconds": 0.006754130000445002,
+      "cost_usd": null
+    },
+    {
+      "configuration": "Laya + search",
+      "verified": 8,
+      "tasks": 8,
+      "p50_seconds": 0.5812466269999277,
+      "p95_seconds": 0.6758304869999847,
+      "cost_usd": null
+    },
+    {
+      "configuration": "Gemma Q4 direct",
+      "verified": 0,
+      "tasks": 8,
+      "p50_seconds": 2.595120982000026,
+      "p95_seconds": 5.856295040999612,
+      "cost_usd": null
+    },
+    {
+      "configuration": "Gemma Q4 + search",
+      "verified": 8,
+      "tasks": 8,
+      "p50_seconds": 2.6522816050000984,
+      "p95_seconds": 5.215149208999719,
+      "cost_usd": null
+    }
+  ],
+  "large_model_baseline_run": false,
+  "conclusion": "Exact symbolic search solved all tasks with substantially less latency. Adding the tested models did not improve the symbolic-only result.",
+  "memory_measured": false,
+  "cost_measured": false,
+  "gemma_generation": {
+    "quantization": "Q4_K_M",
+    "seed": 7,
+    "thinking": false,
+    "max_output_tokens": 96,
+    "output_schema": "JSON expression, same for direct and hybrid"
+  },
+  "component_checks": {
+    "embedding": "inference_completed",
+    "timesfm": "inference_completed"
+  },
+  "tests": {
+    "passed": 8,
+    "failed": 0
+  }
+}

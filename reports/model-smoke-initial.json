@@ -1,0 +1,21 @@
+{
+  "scope": "component load/inference checks, not a quality benchmark",
+  "results": [
+    {
+      "component": "laya",
+      "status": "inference_completed",
+      "load_seconds": 9.221054539999841,
+      "inference_seconds": 1.5138421890001155,
+      "peak_rss_bytes": 3376406528,
+      "output": [
+        1,
+        0
+      ]
+    },
+    {
+      "component": "embedding",
+      "status": "failed",
+      "error": "ImportError: EmbeddingGemma2VideoProcessor requires the Torchvision library but it was not found in your environment. Check out the instructions on the\ninstallation page: https://pytorch.org/get-started/locally/ and follow the ones that match your environment.\nPlease note that you may need to restart your runtime after installation.\n\nTo install the required dependencies, run:\npip install -U \"sentence-transformers[image]\""
+    }
+  ]
+}

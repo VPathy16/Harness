@@ -1,0 +1,288 @@
+[
+  {
+    "id": "six-job-schedule",
+    "problem": "Schedule six one-hour jobs A, B, C, D, E and F into slots 1 through 6. Each job occupies exactly one slot and no jobs share a slot. A must happen before D. B must be immediately before E. C must happen after A and before F. D is fixed in slot 4. F is fixed in slot 6. B cannot be in slot 1. Find a valid schedule.",
+    "reference": {
+      "variables": [
+        {
+          "name": "A",
+          "domain": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "B",
+          "domain": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "C",
+          "domain": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "D",
+          "domain": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "E",
+          "domain": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "F",
+          "domain": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "op": "all_different",
+          "vars": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "value": 0
+        },
+        {
+          "op": "lt",
+          "vars": [
+            "A",
+            "D"
+          ],
+          "value": 0
+        },
+        {
+          "op": "offset",
+          "vars": [
+            "B",
+            "E"
+          ],
+          "value": 1
+        },
+        {
+          "op": "lt",
+          "vars": [
+            "A",
+            "C"
+          ],
+          "value": 0
+        },
+        {
+          "op": "lt",
+          "vars": [
+            "C",
+            "F"
+          ],
+          "value": 0
+        },
+        {
+          "op": "eq",
+          "vars": [
+            "D"
+          ],
+          "value": 4
+        },
+        {
+          "op": "eq",
+          "vars": [
+            "F"
+          ],
+          "value": 6
+        },
+        {
+          "op": "neq",
+          "vars": [
+            "B"
+          ],
+          "value": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "robot-bays",
+    "problem": "Assign robots K, L, M and N to bays numbered 1 through 4. Every robot gets one bay and every bay holds one robot. K must use bay 3. L must use the bay immediately after the bay of N. M must use bay 4. Find an assignment.",
+    "reference": {
+      "variables": [
+        {
+          "name": "K",
+          "domain": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "L",
+          "domain": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "M",
+          "domain": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "N",
+          "domain": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "op": "all_different",
+          "vars": [
+            "K",
+            "L",
+            "M",
+            "N"
+          ],
+          "value": 0
+        },
+        {
+          "op": "eq",
+          "vars": [
+            "K"
+          ],
+          "value": 3
+        },
+        {
+          "op": "offset",
+          "vars": [
+            "N",
+            "L"
+          ],
+          "value": 1
+        },
+        {
+          "op": "eq",
+          "vars": [
+            "M"
+          ],
+          "value": 4
+        }
+      ]
+    }
+  },
+  {
+    "id": "cyclic-ranks",
+    "problem": "Give R, S and T distinct integer ranks from 1 through 3. R must have a lower rank than S. S must have a lower rank than T. T must have a lower rank than R. Determine whether an assignment exists.",
+    "reference": {
+      "variables": [
+        {
+          "name": "R",
+          "domain": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "S",
+          "domain": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "T",
+          "domain": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "op": "all_different",
+          "vars": [
+            "R",
+            "S",
+            "T"
+          ],
+          "value": 0
+        },
+        {
+          "op": "lt",
+          "vars": [
+            "R",
+            "S"
+          ],
+          "value": 0
+        },
+        {
+          "op": "lt",
+          "vars": [
+            "S",
+            "T"
+          ],
+          "value": 0
+        },
+        {
+          "op": "lt",
+          "vars": [
+            "T",
+            "R"
+          ],
+          "value": 0
+        }
+      ]
+    }
+  }
+]
